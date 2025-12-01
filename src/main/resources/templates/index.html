@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${pageTitle} + ' | D&amp;D Character Generator'">D&amp;D Character Generator</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-brand">
+                <a th:href="@{/}">⚔️ D&amp;D Character Generator</a>
+            </div>
+            <div class="nav-links">
+                <a th:href="@{/}" class="nav-link">Home</a>
+                <a th:href="@{/characters/new}" class="nav-link btn-primary">Create Character</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <!-- Flash Messages -->
+        <div th:if="${successMessage}" class="alert alert-success" th:text="${successMessage}"></div>
+        <div th:if="${errorMessage}" class="alert alert-error" th:text="${errorMessage}"></div>
+
+        <div class="hero">
+            <h1>Welcome to D&amp;D Character Generator</h1>
+            <p>Create, manage, and generate D&amp;D characters with ease!</p>
+            <div class="hero-actions">
+                <a th:href="@{/characters/new}" class="btn btn-primary">Create Character</a>
+                <form th:action="@{/characters/generate}" method="post" style="display: inline;">
+                    <button type="submit" class="btn btn-secondary">Generate Random</button>
+                </form>
+            </div>
+        </div>
+
+        <section class="characters-section">
+            <h2>Your Characters</h2>
+            
+            <div th:if="${#lists.isEmpty(characters)}" class="empty-state">
+                <p>No characters yet. Create your first character or generate a random one!</p>
+            </div>
+
+            <div th:unless="${#lists.isEmpty(characters)}" class="character-grid">
+                <div th:each="character : ${characters}" class="character-card">
+                    <div class="character-header">
+                        <h3 th:text="${character.name}">Character Name</h3>
+                        <span class="level-badge" th:text="'Level ' + ${character.level}">Level 1</span>
+                    </div>
+                    <div class="character-info">
+                        <p><strong>Race:</strong> <span th:text="${character.race}">Race</span></p>
+                        <p><strong>Class:</strong> <span th:text="${character.characterClass}">Class</span></p>
+                    </div>
+                    <div class="character-stats">
+                        <span class="stat" th:title="'Strength'">STR: <span th:text="${character.strength}">10</span></span>
+                        <span class="stat" th:title="'Dexterity'">DEX: <span th:text="${character.dexterity}">10</span></span>
+                        <span class="stat" th:title="'Constitution'">CON: <span th:text="${character.constitution}">10</span></span>
+                        <span class="stat" th:title="'Intelligence'">INT: <span th:text="${character.intelligence}">10</span></span>
+                        <span class="stat" th:title="'Wisdom'">WIS: <span th:text="${character.wisdom}">10</span></span>
+                        <span class="stat" th:title="'Charisma'">CHA: <span th:text="${character.charisma}">10</span></span>
+                    </div>
+                    <div class="character-actions">
+                        <a th:href="@{/characters/{id}(id=${character.id})}" class="btn btn-small">View</a>
+                        <a th:href="@{/characters/{id}/edit(id=${character.id})}" class="btn btn-small btn-secondary">Edit</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>D&amp;D Character Generator - School AI Project © 2024</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${pageTitle} + ' | D&amp;D Character Generator'">Character Form</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-brand">
+                <a th:href="@{/}">⚔️ D&amp;D Character Generator</a>
+            </div>
+            <div class="nav-links">
+                <a th:href="@{/}" class="nav-link">Home</a>
+                <a th:href="@{/characters/new}" class="nav-link btn-primary">Create Character</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="form-container">
+            <h1 th:text="${character.id != null} ? 'Edit Character' : 'Create Character'">Character Form</h1>
+            
+            <form th:action="${character.id != null} ? @{/characters/{id}(id=${character.id})} : @{/characters}" 
+                  th:object="${character}" method="post" class="character-form">
+                
+                <!-- Name -->
+                <div class="form-group">
+                    <label for="name">Character Name</label>
+                    <input type="text" id="name" th:field="*{name}" class="form-control" 
+                           placeholder="Enter character name" required>
+                    <div th:if="${#fields.hasErrors('name')}" class="error" th:errors="*{name}">Name error</div>
+                </div>
+
+                <!-- Race -->
+                <div class="form-group">
+                    <label for="race">Race</label>
+                    <select id="race" th:field="*{race}" class="form-control" required>
+                        <option value="">Select a race</option>
+                        <option th:each="r : ${races}" th:value="${r}" th:text="${r}">Race</option>
+                    </select>
+                    <div th:if="${#fields.hasErrors('race')}" class="error" th:errors="*{race}">Race error</div>
+                </div>
+
+                <!-- Class -->
+                <div class="form-group">
+                    <label for="characterClass">Class</label>
+                    <select id="characterClass" th:field="*{characterClass}" class="form-control" required>
+                        <option value="">Select a class</option>
+                        <option th:each="c : ${classes}" th:value="${c}" th:text="${c}">Class</option>
+                    </select>
+                    <div th:if="${#fields.hasErrors('characterClass')}" class="error" th:errors="*{characterClass}">Class error</div>
+                </div>
+
+                <!-- Level -->
+                <div class="form-group">
+                    <label for="level">Level (1-20)</label>
+                    <input type="number" id="level" th:field="*{level}" class="form-control" 
+                           min="1" max="20" required>
+                    <div th:if="${#fields.hasErrors('level')}" class="error" th:errors="*{level}">Level error</div>
+                </div>
+
+                <!-- Ability Scores -->
+                <fieldset class="form-group">
+                    <legend>Ability Scores (1-20)</legend>
+                    <div class="ability-grid">
+                        <div class="ability-input">
+                            <label for="strength">Strength</label>
+                            <input type="number" id="strength" th:field="*{strength}" min="1" max="20">
+                        </div>
+                        <div class="ability-input">
+                            <label for="dexterity">Dexterity</label>
+                            <input type="number" id="dexterity" th:field="*{dexterity}" min="1" max="20">
+                        </div>
+                        <div class="ability-input">
+                            <label for="constitution">Constitution</label>
+                            <input type="number" id="constitution" th:field="*{constitution}" min="1" max="20">
+                        </div>
+                        <div class="ability-input">
+                            <label for="intelligence">Intelligence</label>
+                            <input type="number" id="intelligence" th:field="*{intelligence}" min="1" max="20">
+                        </div>
+                        <div class="ability-input">
+                            <label for="wisdom">Wisdom</label>
+                            <input type="number" id="wisdom" th:field="*{wisdom}" min="1" max="20">
+                        </div>
+                        <div class="ability-input">
+                            <label for="charisma">Charisma</label>
+                            <input type="number" id="charisma" th:field="*{charisma}" min="1" max="20">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- Background -->
+                <div class="form-group">
+                    <label for="background">Background Story (optional)</label>
+                    <textarea id="background" th:field="*{background}" class="form-control" 
+                              rows="4" placeholder="Write your character's background story..."></textarea>
+                    <div th:if="${#fields.hasErrors('background')}" class="error" th:errors="*{background}">Background error</div>
+                </div>
+
+                <!-- Buttons -->
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary" 
+                            th:text="${character.id != null} ? 'Update Character' : 'Create Character'">Save</button>
+                    <a th:href="@{/}" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>D&amp;D Character Generator - School AI Project © 2024</p>
+    </footer>
+</body>
+</html>

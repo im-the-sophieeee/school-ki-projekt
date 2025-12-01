@@ -1,0 +1,33 @@
+# Build output
+target/
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+.project
+.classpath
+.settings/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+logs/
+
+# Application files
+*.jar
+*.war
+
+# Environment files
+.env
+*.env
+
+# H2 Database files
+*.db
+*.trace.db
+*.lock.db
