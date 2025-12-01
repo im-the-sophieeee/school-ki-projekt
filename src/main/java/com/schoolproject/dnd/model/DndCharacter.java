@@ -169,6 +169,39 @@ public class DndCharacter {
         this.background = background;
     }
 
+    // Helper methods for ability score modifiers (D&D 5e formula: floor((score - 10) / 2))
+    private int calculateModifier(int score) {
+        return (int) Math.floor((score - 10) / 2.0);
+    }
+
+    private String formatModifier(int modifier) {
+        return modifier >= 0 ? "+" + modifier : String.valueOf(modifier);
+    }
+
+    public String getStrengthModifier() {
+        return formatModifier(calculateModifier(strength));
+    }
+
+    public String getDexterityModifier() {
+        return formatModifier(calculateModifier(dexterity));
+    }
+
+    public String getConstitutionModifier() {
+        return formatModifier(calculateModifier(constitution));
+    }
+
+    public String getIntelligenceModifier() {
+        return formatModifier(calculateModifier(intelligence));
+    }
+
+    public String getWisdomModifier() {
+        return formatModifier(calculateModifier(wisdom));
+    }
+
+    public String getCharismaModifier() {
+        return formatModifier(calculateModifier(charisma));
+    }
+
     @Override
     public String toString() {
         return "DndCharacter{" +

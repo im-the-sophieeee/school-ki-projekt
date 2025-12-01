@@ -43,32 +43,32 @@
                         <div class="stat-box">
                             <div class="stat-name">Strength</div>
                             <div class="stat-value" th:text="${character.strength}">10</div>
-                            <div class="stat-modifier" th:text="${(character.strength - 10) / 2 >= 0 ? '+' + ((character.strength - 10) / 2) : (character.strength - 10) / 2}">+0</div>
+                            <div class="stat-modifier" th:text="${character.strengthModifier}">+0</div>
                         </div>
                         <div class="stat-box">
                             <div class="stat-name">Dexterity</div>
                             <div class="stat-value" th:text="${character.dexterity}">10</div>
-                            <div class="stat-modifier" th:text="${(character.dexterity - 10) / 2 >= 0 ? '+' + ((character.dexterity - 10) / 2) : (character.dexterity - 10) / 2}">+0</div>
+                            <div class="stat-modifier" th:text="${character.dexterityModifier}">+0</div>
                         </div>
                         <div class="stat-box">
                             <div class="stat-name">Constitution</div>
                             <div class="stat-value" th:text="${character.constitution}">10</div>
-                            <div class="stat-modifier" th:text="${(character.constitution - 10) / 2 >= 0 ? '+' + ((character.constitution - 10) / 2) : (character.constitution - 10) / 2}">+0</div>
+                            <div class="stat-modifier" th:text="${character.constitutionModifier}">+0</div>
                         </div>
                         <div class="stat-box">
                             <div class="stat-name">Intelligence</div>
                             <div class="stat-value" th:text="${character.intelligence}">10</div>
-                            <div class="stat-modifier" th:text="${(character.intelligence - 10) / 2 >= 0 ? '+' + ((character.intelligence - 10) / 2) : (character.intelligence - 10) / 2}">+0</div>
+                            <div class="stat-modifier" th:text="${character.intelligenceModifier}">+0</div>
                         </div>
                         <div class="stat-box">
                             <div class="stat-name">Wisdom</div>
                             <div class="stat-value" th:text="${character.wisdom}">10</div>
-                            <div class="stat-modifier" th:text="${(character.wisdom - 10) / 2 >= 0 ? '+' + ((character.wisdom - 10) / 2) : (character.wisdom - 10) / 2}">+0</div>
+                            <div class="stat-modifier" th:text="${character.wisdomModifier}">+0</div>
                         </div>
                         <div class="stat-box">
                             <div class="stat-name">Charisma</div>
                             <div class="stat-value" th:text="${character.charisma}">10</div>
-                            <div class="stat-modifier" th:text="${(character.charisma - 10) / 2 >= 0 ? '+' + ((character.charisma - 10) / 2) : (character.charisma - 10) / 2}">+0</div>
+                            <div class="stat-modifier" th:text="${character.charismaModifier}">+0</div>
                         </div>
                     </div>
                 </section>
