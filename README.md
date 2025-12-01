@@ -11,7 +11,7 @@ A Java Spring Boot application for creating and managing Dungeons & Dragons char
 
 ## Technology Stack
 
-- **Java**: Version 17 (LTS)
+- **Java**: Version 21 (LTS)
 - **Spring Boot**: 3.2.1
 - **Spring Data JPA**: Database persistence
 - **Thymeleaf**: Server-side templating
@@ -23,7 +23,7 @@ A Java Spring Boot application for creating and managing Dungeons & Dragons char
 
 ### Prerequisites
 
-- Java 17 or higher
+- Java 21 or higher
 - Maven 3.6+
 - (Optional) MySQL 8.0+ for production
 
